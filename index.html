@@ -452,6 +452,12 @@ nav .btn-nav:hover { background: var(--teal-700); }
   font-size: .88rem;
   color: var(--slate-500);
 }
+.pricing-tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2.5rem 0; }
+.tier { background: var(--surface, #f8f6f3); border-radius: 12px; padding: 2rem 1.5rem; text-align: center; border: 2px solid transparent; transition: border-color .3s; }
+.tier:hover { border-color: var(--accent, #1a8a7d); }
+.tier-volume { font-size: 1.3rem; font-weight: 700; color: var(--accent, #1a8a7d); margin-bottom: .5rem; }
+.tier-label { font-size: 1.6rem; font-weight: 800; margin-bottom: 1rem; }
+.tier p { font-size: .95rem; color: #666; line-height: 1.5; }
 
 /* ===== MATERIALS ===== */
 .materials {
@@ -853,7 +859,6 @@ nav .btn-nav:hover { background: var(--teal-700); }
   <img src="/images/strip1.jpg" alt="Gourdes inox professionnelles en lot" width="900" height="600" loading="lazy">
   <img src="/images/strip2.jpg" alt="Gourde sport en salle de fitness" width="900" height="600" loading="lazy">
   <img src="/images/strip3.jpg" alt="Gourde isotherme en randonnee plein air" width="900" height="600" loading="lazy">
-  <img src="/images/strip4.jpg" alt="Collection de gourdes colorees reutilisables" width="900" height="600" loading="lazy">
 </div>
 
 <!-- KPI BAR -->
@@ -955,7 +960,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
           <div class="gamme-specs">
             <div class="gamme-spec"><b>Capacites</b> 350 / 500 / 750 / 1L</div>
             <div class="gamme-spec"><b>Materiau</b> Inox 304 (18/8)</div>
-            <div class="gamme-spec"><b>Prix des</b> 2,40 EUR HT</div>
+            <div class="gamme-spec"><b>Tarif</b> Sur devis — remise volume automatique</div>
             <div class="gamme-spec"><b>MOQ</b> 24 pieces</div>
           </div>
         </div>
@@ -969,7 +974,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
           <div class="gamme-specs">
             <div class="gamme-spec"><b>Capacites</b> 350 / 500 / 750 / 1L</div>
             <div class="gamme-spec"><b>Materiau</b> Inox 304 + cuivre</div>
-            <div class="gamme-spec"><b>Prix des</b> 4,90 EUR HT</div>
+            <div class="gamme-spec"><b>Tarif</b> Sur devis — remise volume automatique</div>
             <div class="gamme-spec"><b>MOQ</b> 24 pieces</div>
           </div>
         </div>
@@ -983,7 +988,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
           <div class="gamme-specs">
             <div class="gamme-spec"><b>Capacites</b> 500 / 650 / 750 ml</div>
             <div class="gamme-spec"><b>Materiau</b> Tritan / Inox</div>
-            <div class="gamme-spec"><b>Prix des</b> 1,80 EUR HT</div>
+            <div class="gamme-spec"><b>Tarif</b> Sur devis — remise volume automatique</div>
             <div class="gamme-spec"><b>MOQ</b> 48 pieces</div>
           </div>
         </div>
@@ -997,7 +1002,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
           <div class="gamme-specs">
             <div class="gamme-spec"><b>Capacites</b> 250 / 350 ml</div>
             <div class="gamme-spec"><b>Materiau</b> Tritan sans BPA</div>
-            <div class="gamme-spec"><b>Prix des</b> 1,60 EUR HT</div>
+            <div class="gamme-spec"><b>Tarif</b> Sur devis — remise volume automatique</div>
             <div class="gamme-spec"><b>MOQ</b> 48 pieces</div>
           </div>
         </div>
@@ -1011,7 +1016,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
           <div class="gamme-specs">
             <div class="gamme-spec"><b>Techniques</b> Seri / Laser / UV</div>
             <div class="gamme-spec"><b>Materiau</b> Inox / Alu / Tritan</div>
-            <div class="gamme-spec"><b>Prix des</b> 3,20 EUR HT</div>
+            <div class="gamme-spec"><b>Tarif</b> Sur devis — remise volume automatique</div>
             <div class="gamme-spec"><b>MOQ</b> 50 pieces</div>
           </div>
         </div>
@@ -1025,7 +1030,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
           <div class="gamme-specs">
             <div class="gamme-spec"><b>Capacites</b> 400 / 550 / 750 ml</div>
             <div class="gamme-spec"><b>Materiau</b> Verre / Bambou</div>
-            <div class="gamme-spec"><b>Prix des</b> 3,80 EUR HT</div>
+            <div class="gamme-spec"><b>Tarif</b> Sur devis — remise volume automatique</div>
             <div class="gamme-spec"><b>MOQ</b> 24 pieces</div>
           </div>
         </div>
@@ -1039,81 +1044,33 @@ nav .btn-nav:hover { background: var(--teal-700); }
 <section class="pricing" id="tarifs">
   <div class="wrap">
     <div class="section-header">
-      <h2>Grille tarifaire degressive</h2>
-      <p>Plus vous commandez, plus le prix unitaire baisse. Tous les prix sont en euros HT, hors personnalisation. Tarif valable stock disponible.</p>
+      <h2>Tarifs degressifs sur mesure</h2>
+      <p>Notre politique tarifaire s'adapte a votre volume de commande. Plus vous commandez, plus le prix unitaire baisse — jusqu'a -35 % sur les grandes series.</p>
     </div>
-    <div class="pricing-table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Gamme</th>
-            <th>24-99 pcs</th>
-            <th>100-299 pcs</th>
-            <th>300-999 pcs</th>
-            <th>1 000+ pcs</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Inox simple paroi 500ml</strong></td>
-            <td>3,20 EUR</td>
-            <td>2,80 EUR</td>
-            <td>2,55 EUR</td>
-            <td class="price-highlight">2,40 EUR <span class="badge-best">-25%</span></td>
-          </tr>
-          <tr>
-            <td><strong>Isotherme double paroi 500ml</strong></td>
-            <td>6,40 EUR</td>
-            <td>5,70 EUR</td>
-            <td>5,20 EUR</td>
-            <td class="price-highlight">4,90 EUR <span class="badge-best">-23%</span></td>
-          </tr>
-          <tr>
-            <td><strong>Isotherme double paroi 750ml</strong></td>
-            <td>8,20 EUR</td>
-            <td>7,30 EUR</td>
-            <td>6,70 EUR</td>
-            <td class="price-highlight">6,20 EUR <span class="badge-best">-24%</span></td>
-          </tr>
-          <tr>
-            <td><strong>Sport Tritan 650ml</strong></td>
-            <td>2,40 EUR</td>
-            <td>2,10 EUR</td>
-            <td>1,90 EUR</td>
-            <td class="price-highlight">1,80 EUR <span class="badge-best">-25%</span></td>
-          </tr>
-          <tr>
-            <td><strong>Enfant Tritan 350ml</strong></td>
-            <td>2,20 EUR</td>
-            <td>1,90 EUR</td>
-            <td>1,75 EUR</td>
-            <td class="price-highlight">1,60 EUR <span class="badge-best">-27%</span></td>
-          </tr>
-          <tr>
-            <td><strong>Personnalisee inox 500ml (seri 1 couleur)</strong></td>
-            <td>4,80 EUR</td>
-            <td>4,10 EUR</td>
-            <td>3,60 EUR</td>
-            <td class="price-highlight">3,20 EUR <span class="badge-best">-33%</span></td>
-          </tr>
-          <tr>
-            <td><strong>Verre borosilicate 550ml</strong></td>
-            <td>5,10 EUR</td>
-            <td>4,50 EUR</td>
-            <td>4,10 EUR</td>
-            <td class="price-highlight">3,80 EUR <span class="badge-best">-25%</span></td>
-          </tr>
-          <tr>
-            <td><strong>Bambou 500ml</strong></td>
-            <td>5,60 EUR</td>
-            <td>4,90 EUR</td>
-            <td>4,40 EUR</td>
-            <td class="price-highlight">4,10 EUR <span class="badge-best">-27%</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="pricing-tiers">
+      <div class="tier">
+        <div class="tier-volume">24 – 99 pcs</div>
+        <div class="tier-label">Tarif decouverte</div>
+        <p>Ideal pour tester une gamme ou un premier assortiment. Acces a l'ensemble du catalogue sans engagement.</p>
+      </div>
+      <div class="tier">
+        <div class="tier-volume">100 – 499 pcs</div>
+        <div class="tier-label">-10 a -15 %</div>
+        <p>Volume revendeur. Remise automatique sur devis, possibilite de panacher les references.</p>
+      </div>
+      <div class="tier">
+        <div class="tier-volume">500 – 999 pcs</div>
+        <div class="tier-label">-20 a -25 %</div>
+        <p>Volume professionnel. Marquage logo inclus des 500 pieces, palette complete.</p>
+      </div>
+      <div class="tier">
+        <div class="tier-volume">1 000+ pcs</div>
+        <div class="tier-label">-30 a -35 %</div>
+        <p>Grands comptes, collectivites, marque blanche. Tarif negocie sur mesure, packaging personnalise possible.</p>
+      </div>
     </div>
-    <p class="pricing-note">Supplement marquage : serigraphie 1 couleur +0,45 EUR/pc | gravure laser +0,90 EUR/pc | impression UV 360 degres +1,50 EUR/pc — Franco de port des 500 EUR HT de commande.</p>
+    <p class="pricing-note">Supplement marquage : serigraphie, gravure laser ou impression UV — tarif sur devis selon technique et quantite. Franco de port a partir de 500 EUR HT de commande.</p>
+    <div style="text-align:center;margin-top:2rem"><a href="#contact" class="btn">Demander un devis gratuit</a></div>
   </div>
 </section>
 
