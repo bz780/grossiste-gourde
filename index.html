@@ -45,10 +45,10 @@
     "@type": "OfferCatalog",
     "name": "Catalogue gourdes en gros professionnel",
     "itemListElement": [
-      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Gourde inox simple paroi en gros", "description": "Acier inoxydable 18/8 (304), capacites 350-1000ml, sans BPA, prix grossiste a partir de 2,40 EUR HT", "offers": {"@type": "Offer", "price": "2.40", "priceCurrency": "EUR", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock"}}},
-      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Gourde isotherme double paroi en gros", "description": "Inox 304 double paroi sous vide, maintien chaud 12h / froid 24h, prix des 4,90 EUR HT", "offers": {"@type": "Offer", "price": "4.90", "priceCurrency": "EUR", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock"}}},
-      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Gourde sport avec bouchon paille en gros", "description": "Tritan ou inox, bouchon sport anti-fuite, 500-750ml, prix des 1,80 EUR HT", "offers": {"@type": "Offer", "price": "1.80", "priceCurrency": "EUR", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock"}}},
-      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Gourde personnalisee marquage logo", "description": "Serigraphie, gravure laser ou impression UV, des 50 pieces, prix des 3,20 EUR HT", "offers": {"@type": "Offer", "price": "3.20", "priceCurrency": "EUR", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock"}}}
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Gourde inox simple paroi en gros", "description": "Acier inoxydable 18/8 (304), capacites 350-1000ml, sans BPA, prix grossiste a partir de 2,40 EUR HT", "image": "https://grossiste-gourde.fr/images/hero.jpg", "offers": {"@type": "Offer", "price": "2.40", "priceCurrency": "EUR", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock"}}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Gourde isotherme double paroi en gros", "description": "Inox 304 double paroi sous vide, maintien chaud 12h / froid 24h, prix des 4,90 EUR HT", "image": "https://grossiste-gourde.fr/images/hero.jpg", "offers": {"@type": "Offer", "price": "4.90", "priceCurrency": "EUR", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock"}}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Gourde sport avec bouchon paille en gros", "description": "Tritan ou inox, bouchon sport anti-fuite, 500-750ml, prix des 1,80 EUR HT", "image": "https://grossiste-gourde.fr/images/hero.jpg", "offers": {"@type": "Offer", "price": "1.80", "priceCurrency": "EUR", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock"}}},
+      {"@type": "Offer", "itemOffered": {"@type": "Product", "name": "Gourde personnalisee marquage logo", "description": "Serigraphie, gravure laser ou impression UV, des 50 pieces, prix des 3,20 EUR HT", "image": "https://grossiste-gourde.fr/images/hero.jpg", "offers": {"@type": "Offer", "price": "3.20", "priceCurrency": "EUR", "priceValidUntil": "2027-12-31", "availability": "https://schema.org/InStock"}}}
     ]
   },
   "aggregateRating": {
@@ -1412,7 +1412,11 @@ nav .btn-nav:hover { background: var(--teal-700); }
           <span>Region PACA, France</span>
         </div>
       </div>
-      <form class="contact-form" action="mailto:adv@grossiste-gourde.fr" method="POST" enctype="text/plain">
+      <form class="contact-form" id="contact-form">
+        <input type="hidden" name="_subject" value="Demande de devis — grossiste gourde">
+        <input type="hidden" name="_honeypot" value="">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
         <div class="form-row">
           <div>
             <label for="name">Nom / Societe</label>
@@ -1445,6 +1449,12 @@ nav .btn-nav:hover { background: var(--teal-700); }
         </div>
         <button type="submit" class="btn-primary">Envoyer la demande de devis</button>
       </form>
+      <div id="form-success" style="display:none;padding:18px 20px;background:#f0fdf4;border:1px solid #86efac;border-radius:8px;color:#166534;margin-top:16px;font-weight:500;font-size:.95rem;">
+        ✓ Votre demande a bien été envoyée. Nous vous répondrons sous 24h ouvrées.
+      </div>
+      <div id="form-error" style="display:none;padding:18px 20px;background:#fef2f2;border:1px solid #fca5a5;border-radius:8px;color:#991b1b;margin-top:16px;font-size:.95rem;">
+        ✗ Une erreur est survenue. Veuillez réessayer ou nous contacter directement par email.
+      </div>
     </div>
   </div>
 </section>
@@ -1480,5 +1490,53 @@ nav .btn-nav:hover { background: var(--teal-700); }
 </footer>
 <!--/email_off-->
 
+
+<script>
+/* Formsubmit AJAX handler — auto-generated */
+(function () {
+  const form = document.querySelector('.contact-form');
+  if (!form) return;
+
+  // Bloquer la soumission native (honeypot + AJAX)
+  form.setAttribute('novalidate', '');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // Validation HTML5 manuelle
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const btn = form.querySelector('[type="submit"]');
+    const origText = btn.textContent;
+    btn.textContent = 'Envoi en cours…';
+    btn.disabled = true;
+
+    const successEl = document.getElementById('form-success');
+    const errorEl   = document.getElementById('form-error');
+    if (errorEl) errorEl.style.display = 'none';
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch('https://formsubmit.co/ajax/contact@le-reve-de-noel.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: data,
+      });
+      const json = await res.json();
+      if (json.success === 'true' || json.success === true) {
+        form.reset();
+        form.style.display = 'none';
+        if (successEl) successEl.style.display = 'block';
+      } else {
+        throw new Error('Formsubmit non-success');
+      }
+    } catch (err) {
+      btn.textContent = origText;
+      btn.disabled = false;
+      if (errorEl) errorEl.style.display = 'block';
+    }
+  });
+})();
+</script>
 </body>
 </html>
