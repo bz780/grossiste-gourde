@@ -399,6 +399,25 @@ nav .btn-nav:hover { background: var(--teal-700); }
 }
 .gamme-spec b { font-weight: 700; display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .04em; color: var(--slate-500); margin-bottom: 1px; }
 
+/* ===== FILTRES TRANSVERSES ===== */
+.filter-bar { background: var(--white); border: 1px solid var(--sand-200); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 28px; display: grid; grid-template-columns: repeat(4, 1fr) auto; gap: 16px; align-items: end; box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,.05)); }
+.filter-group { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.filter-group label { font-size: .72rem; text-transform: uppercase; letter-spacing: .05em; color: var(--slate-500); font-weight: 700; }
+.filter-group select { width: 100%; padding: 9px 12px; border: 1px solid var(--sand-200); border-radius: 6px; background: var(--white); font-size: .9rem; color: var(--teal-900); cursor: pointer; font-family: inherit; }
+.filter-group select:focus { outline: 2px solid var(--teal-600); outline-offset: 1px; }
+.filter-group option:disabled { color: #bbb; }
+.filter-actions { display: flex; flex-direction: column; gap: 6px; align-items: stretch; }
+.filter-count { font-size: .8rem; color: var(--slate-500); white-space: nowrap; text-align: center; }
+.filter-reset { background: var(--teal-50); color: var(--teal-800); border: 1px solid var(--teal-600); padding: 9px 14px; border-radius: 6px; font-size: .85rem; cursor: pointer; font-family: inherit; transition: background .2s; white-space: nowrap; }
+.filter-reset:hover { background: var(--teal-600); color: var(--white); }
+.filter-empty { text-align: center; padding: 50px 20px; background: var(--white); border: 1px dashed var(--sand-200); border-radius: var(--radius); color: var(--slate-500); display: none; }
+.filter-empty a { color: var(--teal-700); font-weight: 600; }
+.gamme-card.is-hidden { display: none; }
+@media (max-width: 768px) {
+  .filter-bar { grid-template-columns: 1fr 1fr; }
+  .filter-actions { grid-column: span 2; flex-direction: row; justify-content: space-between; align-items: center; }
+}
+
 /* ===== PRICING ===== */
 .pricing {
   padding: 80px 0;
@@ -953,9 +972,55 @@ nav .btn-nav:hover { background: var(--teal-700); }
       <h2>Nos gammes de gourdes en gros</h2>
       <p>Six familles de produits pour couvrir tous les besoins — du bureau a la salle de sport, de la cantine scolaire au salon professionnel.</p>
     </div>
-    <div class="gammes-grid">
+    <div class="filter-bar" id="filter-bar">
+      <div class="filter-group">
+        <label for="f-matiere">Matiere</label>
+        <select id="f-matiere" data-filter="matiere">
+          <option value="">Toutes (6)</option>
+          <option value="inox">Inox</option>
+          <option value="verre">Verre</option>
+          <option value="aluminium">Aluminium</option>
+          <option value="plastique">Plastique BPA-free</option>
+          <option value="tritan">Tritan</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="f-capacite">Capacite</label>
+        <select id="f-capacite" data-filter="capacite">
+          <option value="">Toutes</option>
+          <option value="250-500">250-500 ml</option>
+          <option value="500-750">500-750 ml</option>
+          <option value="750-1000">750 ml - 1L</option>
+          <option value=">1000">Plus de 1L</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="f-moq">MOQ</label>
+        <select id="f-moq" data-filter="moq">
+          <option value="">Tous</option>
+          <option value="50">Des 50 pcs</option>
+          <option value="100">Des 100 pcs</option>
+          <option value="250">Des 250 pcs</option>
+          <option value="500">Des 500 pcs</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="f-perso">Personnalisation</label>
+        <select id="f-perso" data-filter="perso">
+          <option value="">Indifferent</option>
+          <option value="oui">Logo / marquage</option>
+          <option value="non">Sans personnalisation</option>
+        </select>
+      </div>
+      <div class="filter-actions">
+        <span class="filter-count" id="filter-count">6 / 6 gammes</span>
+        <button type="button" class="filter-reset" id="filter-reset">Reinitialiser</button>
+      </div>
+    </div>
+    <div class="filter-empty" id="filter-empty">Aucune gamme ne correspond a votre selection. <a href="#" id="filter-empty-reset">Reinitialiser les filtres</a></div>
+    <div class="gammes-grid" id="gammes-grid">
 
-      <div class="gamme-card">
+      <div class="gamme-card" data-matiere="inox" data-capacite="250-500,500-750,750-1000,>1000" data-moq="50" data-perso="oui">
         <div class="gamme-card-top"></div>
         <div class="gamme-card-body">
           <h3>Gourde inox simple paroi</h3>
@@ -969,7 +1034,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
         </div>
       </div>
 
-      <div class="gamme-card">
+      <div class="gamme-card" data-matiere="inox" data-capacite="250-500,500-750,750-1000,>1000" data-moq="100" data-perso="oui">
         <div class="gamme-card-top"></div>
         <div class="gamme-card-body">
           <h3>Gourde isotherme double paroi</h3>
@@ -983,7 +1048,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
         </div>
       </div>
 
-      <div class="gamme-card">
+      <div class="gamme-card" data-matiere="tritan,plastique" data-capacite="500-750,750-1000" data-moq="250" data-perso="oui">
         <div class="gamme-card-top"></div>
         <div class="gamme-card-body">
           <h3>Gourde sport</h3>
@@ -997,7 +1062,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
         </div>
       </div>
 
-      <div class="gamme-card">
+      <div class="gamme-card" data-matiere="tritan,plastique" data-capacite="250-500" data-moq="500" data-perso="non">
         <div class="gamme-card-top"></div>
         <div class="gamme-card-body">
           <h3>Gourde enfant</h3>
@@ -1011,7 +1076,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
         </div>
       </div>
 
-      <div class="gamme-card">
+      <div class="gamme-card" data-matiere="aluminium,inox,tritan" data-capacite="250-500,500-750,750-1000" data-moq="100" data-perso="oui">
         <div class="gamme-card-top"></div>
         <div class="gamme-card-body">
           <h3>Gourde personnalisée / publicitaire</h3>
@@ -1025,7 +1090,7 @@ nav .btn-nav:hover { background: var(--teal-700); }
         </div>
       </div>
 
-      <div class="gamme-card">
+      <div class="gamme-card" data-matiere="verre" data-capacite="250-500,500-750" data-moq="50" data-perso="non">
         <div class="gamme-card-top"></div>
         <div class="gamme-card-body">
           <h3>Gourde verre borosilicate & bambou</h3>
@@ -1559,5 +1624,94 @@ nav .btn-nav:hover { background: var(--teal-700); }
     }
   });
 })();</script>
+<script>
+/* ===== Filtres transverses ===== */
+(function(){
+  var bar = document.getElementById('filter-bar');
+  var grid = document.getElementById('gammes-grid');
+  if (!bar || !grid) return;
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.gamme-card'));
+  var selects = Array.prototype.slice.call(bar.querySelectorAll('select[data-filter]'));
+  var countEl = document.getElementById('filter-count');
+  var emptyEl = document.getElementById('filter-empty');
+  var resetBtn = document.getElementById('filter-reset');
+  var emptyResetLink = document.getElementById('filter-empty-reset');
+  var totalCards = cards.length;
+
+  function cardValues(card, key){
+    var raw = card.getAttribute('data-' + key) || '';
+    return raw.split(',').map(function(s){ return s.trim(); }).filter(Boolean);
+  }
+  function cardMatches(card, filters){
+    for (var key in filters){
+      var v = filters[key];
+      if (!v) continue;
+      var values = cardValues(card, key);
+      if (values.indexOf(v) === -1) return false;
+    }
+    return true;
+  }
+  function getActiveFilters(){
+    var f = {};
+    selects.forEach(function(sel){ f[sel.dataset.filter] = sel.value; });
+    return f;
+  }
+  function apply(){
+    var filters = getActiveFilters();
+    var visible = 0;
+    cards.forEach(function(card){
+      if (cardMatches(card, filters)){
+        card.classList.remove('is-hidden');
+        visible++;
+      } else {
+        card.classList.add('is-hidden');
+      }
+    });
+    countEl.textContent = visible + ' / ' + totalCards + ' gammes';
+    emptyEl.style.display = visible === 0 ? 'block' : 'none';
+    grid.style.display = visible === 0 ? 'none' : '';
+
+    /* mise a jour des compteurs et options disabled */
+    selects.forEach(function(sel){
+      var key = sel.dataset.filter;
+      var current = sel.value;
+      Array.prototype.slice.call(sel.options).forEach(function(opt){
+        if (!opt.value){
+          /* count for "all" = nombre de cards qui matchent les autres filtres */
+          var others = {};
+          for (var k in filters){ if (k !== key) others[k] = filters[k]; }
+          var n = cards.filter(function(c){ return cardMatches(c, others); }).length;
+          var label = opt.dataset.baseLabel || opt.textContent.replace(/\s*\(\d+\)\s*$/, '');
+          opt.dataset.baseLabel = label;
+          opt.textContent = label + ' (' + n + ')';
+        } else {
+          var test = {};
+          for (var k2 in filters){ test[k2] = filters[k2]; }
+          test[key] = opt.value;
+          var n2 = cards.filter(function(c){ return cardMatches(c, test); }).length;
+          var lbl = opt.dataset.baseLabel || opt.textContent.replace(/\s*\(\d+\)\s*$/, '');
+          opt.dataset.baseLabel = lbl;
+          opt.textContent = lbl + ' (' + n2 + ')';
+          if (n2 === 0 && opt.value !== current){
+            opt.disabled = true;
+          } else {
+            opt.disabled = false;
+          }
+        }
+      });
+    });
+  }
+  function reset(){
+    selects.forEach(function(sel){ sel.value = ''; });
+    apply();
+  }
+  selects.forEach(function(sel){ sel.addEventListener('change', apply); });
+  resetBtn.addEventListener('click', reset);
+  if (emptyResetLink){
+    emptyResetLink.addEventListener('click', function(e){ e.preventDefault(); reset(); });
+  }
+  apply();
+})();
+</script>
 </body>
 </html>
